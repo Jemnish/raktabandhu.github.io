@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <link rel="icon" type="image/logo" href="images/logo/logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Rakta Bandhu</title>
+    <link rel="stylesheet" href="donorandbanks.css" />
+  </head>
+  <body class="vh-100 overflow hidden">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="images/logo-color.png" id="logo" alt="page logo" />
+          Rakta <span class="red">Bandhu</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="aboutus.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="findblood2.html"
+                >Find Blood</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="donor.html">Register as a Donor</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html"><button>Log In</button></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section id="donorandbanks">
+      <div class="form-box">
+        <div class="button-box">
+          <div id="btn"></div>
+          <button type="button" class="toggle-btn" onclick="leftClick()">
+            Blood Donors
+          </button>
+          <button type="button" class="toggle-btn" onclick="rightClick()">
+            Blood Banks
+          </button>
+        </div>
+      </div>
+
+      <div id="donor-container" class="details-container">
+        <!-- Blood Donor details will be dynamically added here -->
+      </div>
+
+      <div id="bank-container" class="details-container">
+        <!-- Blood Bank details will be dynamically added here -->
+      </div>
+    </section>
+
+    <script>
+      var btn = document.getElementById("btn");
+      var donorContainer = document.getElementById("donor-container");
+      var bankContainer = document.getElementById("bank-container");
+
+      function leftClick() {
+        btn.style.left = "0";
+        donorContainer.style.display = "block";
+        bankContainer.style.display = "none";
+        populateDonorDetails(); // Call a function to populate donor details
+      }
+
+      function rightClick() {
+        btn.style.left = "50%";
+        donorContainer.style.display = "none";
+        bankContainer.style.display = "block";
+        populateBankDetails(); // Call a function to populate blood bank details
+      }
+
+      function populateDonorDetails() {
+        const donorData = [
+          {
+            name: "Hari Bahadur",
+            location: "Lalitpur, Imadol",
+            contact: "98185429807",
+          },
+          {
+            name: "Sita Sharma",
+            location: "Kathmandu, New Road",
+            contact: "9841567890",
+          },
+          // Add more donor objects as needed
+        ];
+
+        donorContainer.innerHTML = ""; // Clear previous entries
+
+        if (donorData.length > 0) {
+          donorData.forEach((donor) => {
+            const donorElement = document.createElement("div");
+            donorElement.innerHTML = `
+              <h5>${donor.name}</h5>
+              <p>${donor.location}</p>
+              <p>${donor.contact}</p>
+            `;
+            donorContainer.appendChild(donorElement);
+          });
+        } else {
+          donorContainer.innerHTML = "<p>No donors available</p>";
+        }
+      }
+
+      function populateBankDetails() {
+        const bankData = [
+          {
+            name: "Bhaktapur NRCS Blood Bank",
+            location: "Bhaktapur",
+            contact: "01-6611661, 01-6612266",
+          },
+          {
+            name: "Central NRCS Blood Bank",
+            location: "Soaltee-Mode",
+            contact: "01-4288485",
+          },
+          {
+            name: "Lalitpur NRCS Blood Bank",
+            location: "Pulchowk",
+            contact: "+97715427033",
+          },
+          {
+            name: "Teaching Hospital",
+            location: "Maharajgunj, Kathmandu",
+            contact: "01-44123030, 01-4410911",
+          },
+        ];
+
+        bankContainer.innerHTML = ""; // Clear previous entries
+
+        if (bankData.length > 0) {
+          bankData.forEach((bank) => {
+            const bankElement = document.createElement("div");
+            bankElement.innerHTML = `
+              <h5>${bank.name}</h5>
+              <p>${bank.location}</p>
+              <p>${bank.contact}</p>
+            `;
+            bankContainer.appendChild(bankElement);
+          });
+        } else {
+          bankContainer.innerHTML = "<p>No blood banks available</p>";
+        }
+      }
+    </script>
+  </body>
+</html>
